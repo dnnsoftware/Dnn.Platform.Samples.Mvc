@@ -1,0 +1,13 @@
+﻿@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+
+.contactCard {
+    padding: 20px;
+    border: solid 1px #aaa;
+    border-radius: 10px;
+    width: 200px;
+    margin: 10px;
+}
+
+.contactCard .fa {
+    font-size: 18px;
+}

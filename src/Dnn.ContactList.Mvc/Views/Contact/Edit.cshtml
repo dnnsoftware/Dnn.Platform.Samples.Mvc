@@ -1,0 +1,29 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<Dnn.ContactList.Api.Contact>
+
+@using DotNetNuke.Web.Mvc.Helpers
+
+<div class="editContact">
+    <div>
+        <label>@Dnn.LocalizeString("FirstName")</label>
+        @Html.TextBoxFor(m => m.FirstName)
+    </div>
+    <div>
+        <label>@Dnn.LocalizeString("LastName")</label>
+        @Html.TextBoxFor(m => m.LastName)
+    </div>
+    <div>
+        <label>@Dnn.LocalizeString("Email")</label>
+        @Html.TextBoxFor(m => m.Email)
+    </div>
+    <div>
+        <label>@Dnn.LocalizeString("Phone")</label>
+        @Html.TextBoxFor(m => m.Phone)
+    </div>
+    <div>
+        <label>@Dnn.LocalizeString("Twitter")</label>
+        @Html.TextBoxFor(m => m.Twitter)
+    </div>
+    <div class="buttons">
+        <button type="submit" class="dnnPrimaryAction">@Dnn.LocalizeString("Save")</button>
+    </div>
+</div>

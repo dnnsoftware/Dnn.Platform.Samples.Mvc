@@ -1,0 +1,34 @@
+﻿@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+
+.contactCard {
+    padding: 20px;
+    border: solid 1px #aaa;
+    border-radius: 10px;
+    width: 200px;
+    margin: 10px;
+}
+
+.contactCard .fa {
+    font-size: 18px;
+}
+
+.editContact div label {
+  width: 200px;
+  display: inline-block;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: right;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.editContact div input {
+    width: 200px;
+    margin-top: 20px;
+}
+
+.editContact .buttons {
+  margin-top: 10px;
+  text-align: center;
+  padding-top: 20px;
+}

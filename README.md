@@ -1,1 +1,2 @@
-# DnnConnect.Demo
+Project Description
+===================

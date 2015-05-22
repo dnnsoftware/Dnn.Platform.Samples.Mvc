@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F1F022AF-2E1D-41D4-854F-DFE6BB786354}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+		packages\repositories.config = packages\repositories.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnn.ContactList.Api", "src\Dnn.ContactList.Api\Dnn.ContactList.Api.csproj", "{8C8F79B4-AEA9-437E-9673-F4AD57E22949}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build Scripts", "Build Scripts", "{94A11E82-D0EE-4DCC-B952-4C205566B452}"
+	ProjectSection(SolutionItems) = preProject
+		build\Module.build = build\Module.build
+		build\Package.targets = build\Package.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnn.ContactList.Tests", "tests\Dnn.ContactList.Tests\Dnn.ContactList.Tests.csproj", "{7F65A629-C991-4A79-8353-AB080AA3DEEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnn.ContactList.Mvc", "src\Dnn.ContactList.Mvc\Dnn.ContactList.Mvc.csproj", "{EF33B86E-8F37-4578-9E7C-6C9CE236C7BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnn.ContactList.Spa", "src\Dnn.ContactList.Spa\Dnn.ContactList.Spa.csproj", "{BF61F08B-6D55-4E9C-A84F-A2015BBD7AB3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C8F79B4-AEA9-437E-9673-F4AD57E22949}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C8F79B4-AEA9-437E-9673-F4AD57E22949}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C8F79B4-AEA9-437E-9673-F4AD57E22949}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C8F79B4-AEA9-437E-9673-F4AD57E22949}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F65A629-C991-4A79-8353-AB080AA3DEEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F65A629-C991-4A79-8353-AB080AA3DEEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F65A629-C991-4A79-8353-AB080AA3DEEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F65A629-C991-4A79-8353-AB080AA3DEEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF33B86E-8F37-4578-9E7C-6C9CE236C7BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF33B86E-8F37-4578-9E7C-6C9CE236C7BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF33B86E-8F37-4578-9E7C-6C9CE236C7BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF33B86E-8F37-4578-9E7C-6C9CE236C7BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF61F08B-6D55-4E9C-A84F-A2015BBD7AB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF61F08B-6D55-4E9C-A84F-A2015BBD7AB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF61F08B-6D55-4E9C-A84F-A2015BBD7AB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF61F08B-6D55-4E9C-A84F-A2015BBD7AB3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
