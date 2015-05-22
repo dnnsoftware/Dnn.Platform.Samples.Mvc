@@ -41,7 +41,47 @@ namespace Dnn.ContactList.Spa.Services
         }
 
         /// <summary>
-        /// The Index method is the default Action method
+        /// The DeleteContact method deletes a single contact
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public HttpResponseMessage DeleteContact(ContactViewModel viewModel)
+        {
+            var contact = _repository.GetContact(viewModel.ContactId, PortalSettings.PortalId);
+
+            _repository.DeleteContact(contact);
+
+            var response = new
+                            {
+                                success = true
+                            };
+
+            return Request.CreateResponse(response);
+        }
+
+        /// <summary>
+        /// The GetContact method gets a single contact
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public HttpResponseMessage GetContact(int contactId)
+        {
+            var contact = new ContactViewModel(_repository.GetContact(contactId, PortalSettings.PortalId));
+
+            var response = new
+            {
+                success = true,
+                data = new
+                        {
+                            contact = contact
+                        }
+            };
+
+            return Request.CreateResponse(response);
+        }
+
+        /// <summary>
+        /// The GetContacts method gets all the contacts
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -62,6 +102,57 @@ namespace Dnn.ContactList.Spa.Services
                             };
 
             return Request.CreateResponse(response);
+        }
+
+        /// <summary>
+        /// The SaveContact method persists the Contact to the repository
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public HttpResponseMessage SaveContact(ContactViewModel viewModel)
+        {
+            Contact contact;
+
+            if (viewModel.ContactId == -1)
+            {
+                contact = new Contact
+                                {
+                                    FirstName = viewModel.FirstName,
+                                    LastName = viewModel.LastName,
+                                    Email = viewModel.Email,
+                                    Phone = viewModel.Phone,
+                                    Twitter = viewModel.Twitter,
+                                    PortalId = PortalSettings.PortalId
+                                };
+                _repository.AddContact(contact);
+            }
+            else
+            {
+                //Update
+                contact = _repository.GetContact(viewModel.ContactId, PortalSettings.PortalId);
+
+                if (contact != null)
+                {
+                    contact.FirstName = viewModel.FirstName;
+                    contact.LastName = viewModel.LastName;
+                    contact.Email = viewModel.Email;
+                    contact.Phone = viewModel.Phone;
+                    contact.Twitter = viewModel.Twitter;
+                }
+                _repository.UpdateContact(contact);
+            }
+            var response = new
+            {
+                success = true,
+                data = new
+                        {
+                            contactId = contact.ContactId
+                        }
+            };
+
+            return Request.CreateResponse(response);
+
         }
     }
 }

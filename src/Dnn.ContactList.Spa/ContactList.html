@@ -4,24 +4,63 @@
 [JavaScript:{ path: "~/Resources/Shared/scripts/dnn.jquery.js"}]
 
 <div id="ContactList-[ModuleContext:ModuleId]" class="dnnContactList">
-    <div data-bind="foreach: contacts">
-        <div class="contactCard">
-            <div>
-                <span data-bind="text: firstName"></span>
-                <span data-bind="text: lastName"></span>
+    <div data-bind="visible: !isEditMode()">
+        <div data-bind="foreach: contacts">
+            <div class="contactCard">
+                <div class="right">
+                    <a title="[Resx:{key:'Edit'}]" data-bind="click: $parent.editContact">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <a title="[Resx:{key:'Delete'}]" data-bind="click: deleteContact">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </div>
+                <div>
+                    <span data-bind="text: firstName"></span>
+                    <span data-bind="text: lastName"></span>
+                </div>
+                <div>
+                    <span>[Resx:{key:"Email"}]</span>
+                    <span data-bind="text: email"></span>
+                </div>
+                <div>
+                    <span>[Resx:{key:"Phone"}]</span>
+                    <span data-bind="text: phone"></span>
+                </div>
+                <div>
+                    <span>[Resx:{key:"Twitter"}]</span>
+                    <span data-bind="text: twitter"></span>
+                </div>
             </div>
-            <div>
-                <span>Email:</span>
-                <span data-bind="text: email"></span>
-            </div>
-            <div>
-                <span>Phone:</span>
-                <span data-bind="text: phone"></span>
-            </div>
-            <div>
-                <span>Twitter:</span>
-                <span data-bind="text: twitter"></span>
-            </div>
+        </div>
+        <div class="buttons">
+            <a class="dnnPrimaryAction" data-bind="click: addContact">[Resx:{key:"AddContact"}]</a>
+        </div>
+    </div>
+    <div class="editContact" data-bind="visible: isEditMode(), with: selectedContact">
+        <div>
+            <label>[Resx:{key:"FirstName"}]</label>
+            <input data-bind="value: firstName" />
+        </div>
+        <div>
+            <label>[Resx:{key:"LastName"}]</label>
+            <input data-bind="value: lastName" />
+        </div>
+        <div>
+            <label>[Resx:{key:"Email"}]</label>
+            <input data-bind="value: email" />
+        </div>
+        <div>
+            <label>[Resx:{key:"Phone"}]</label>
+            <input data-bind="value: phone" />
+        </div>
+        <div>
+            <label>[Resx:{key:"Twitter"}]</label>
+            <input data-bind="value: twitter" />
+        </div>
+        <div class="buttons">
+            <a class="dnnSecondaryAction" data-bind="click: cancel">[Resx:{key:"Cancel"}]</a>
+            <a class="dnnPrimaryAction" data-bind="click: saveContact">[Resx:{key:"Save"}]</a>
         </div>
     </div>
 </div>

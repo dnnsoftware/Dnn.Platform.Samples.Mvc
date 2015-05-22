@@ -11,3 +11,28 @@
 .contactCard .fa {
     font-size: 18px;
 }
+
+.contactCard a .fa {
+    cursor: pointer;
+}
+.editContact div label {
+  width: 200px;
+  display: inline-block;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: right;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.editContact div input {
+    width: 200px;
+    margin-top: 20px;
+}
+
+.buttons {
+  margin-top: 10px;
+  text-align: center;
+  padding-top: 20px;
+}
+
