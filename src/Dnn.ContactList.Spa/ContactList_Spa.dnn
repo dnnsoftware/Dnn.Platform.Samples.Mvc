@@ -28,6 +28,7 @@
                 <defaultCacheTime>0</defaultCacheTime>
                 <moduleControls>
                   <moduleControl>
+                    <controlKey />
                     <controlSrc>DesktopModules/Dnn/ContactList/ContactList.html</controlSrc>
                     <supportsPartialRendering>False</supportsPartialRendering>
                     <controlType>View</controlType>
