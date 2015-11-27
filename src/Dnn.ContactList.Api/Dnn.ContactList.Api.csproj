@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DotNetNuke">
-      <HintPath>..\..\..\..\Dnn\Dnn.Platform8\DNN Platform\Library\bin\DotNetNuke.dll</HintPath>
+      <HintPath>..\..\..\..\..\iisroot\websites\platform574\bin\DotNetNuke.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

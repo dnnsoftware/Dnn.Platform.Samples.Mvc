@@ -16,7 +16,7 @@ namespace Dnn.ContactList.Spa.Services
     /// <summary>
     /// ContentTypeController provides the Web Services to manage Data Types
     /// </summary>
-    [SupportedModules("Dnn.ContactList_SPA")]
+    [SupportedModules("Dnn.ContactList.Spa")]
     [DnnModuleAuthorize(AccessLevel = SecurityAccessLevel.View)]
     public class ContactController : DnnApiController
     {

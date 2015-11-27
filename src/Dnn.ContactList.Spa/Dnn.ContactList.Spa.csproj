@@ -42,10 +42,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DotNetNuke">
-      <HintPath>..\..\..\..\Dnn\Dnn.Platform8\DNN Platform\Library\bin\DotNetNuke.dll</HintPath>
+      <HintPath>..\..\..\..\..\iisroot\websites\platform574\bin\DotNetNuke.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke.Web">
-      <HintPath>..\..\..\..\Dnn\Dnn.Platform8\DNN Platform\DotNetNuke.Web\bin\DotNetNuke.Web.dll</HintPath>
+      <HintPath>..\..\..\..\..\iisroot\websites\platform574\bin\DotNetNuke.Web.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json">
@@ -106,7 +106,9 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Providers\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dnn.ContactList.Api\Dnn.ContactList.Api.csproj">
       <Project>{8c8f79b4-aea9-437e-9673-f4ad57e22949}</Project>

@@ -1,8 +1,8 @@
 ﻿<dotnetnuke type="Package" version="5.0">
   <packages>
     <package name="Dnn.ContactList_Mvc" type="Module" version="01.00.00">
-      <friendlyName>Contact List</friendlyName>
-      <description>DNN Contact List</description>
+      <friendlyName>Contact List Mvc</friendlyName>
+      <description>DNN Contact List using MVC</description>
       <owner>
         <name>DNN</name>
         <organization>DNN Corp.</organization>
@@ -16,15 +16,25 @@
         <dependency type="CoreVersion">08.00.00</dependency>
       </dependencies>
       <components>
+        <component type="Script">
+          <scripts>
+            <basePath>DesktopModules\MVC\Dnn\ContactList</basePath>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>01.00.00.SqlDataProvider</name>
+              <version>01.00.00</version>
+            </script>
+          </scripts>
+        </component>
         <component type="Module">
           <desktopModule>
-            <moduleName>Dnn.ContactList</moduleName>
+            <moduleName>Dnn.ContactList.Mvc</moduleName>
             <foldername>Dnn/ContactList</foldername>
             <businessControllerClass/>
             <supportedFeatures />
             <moduleDefinitions>
               <moduleDefinition>
-                <friendlyName>Contact List</friendlyName>
+                <friendlyName>Contact List Mvc</friendlyName>
                 <defaultCacheTime>0</defaultCacheTime>
                 <moduleControls>
                   <moduleControl>
@@ -36,6 +46,17 @@
                     <iconFile />
                     <helpUrl/>
                     <supportsPopUps>False</supportsPopUps>
+                    <viewOrder>0</viewOrder>
+                  </moduleControl>
+                  <moduleControl>
+                    <controlKey>Edit</controlKey>
+                    <controlSrc>Contact/Edit.mvc</controlSrc>
+                    <supportsPartialRendering>True</supportsPartialRendering>
+                    <controlTitle>Add/Update Contact</controlTitle>
+                    <controlType>View</controlType>
+                    <iconFile />
+                    <helpUrl/>
+                    <supportsPopUps>True</supportsPopUps>
                     <viewOrder>0</viewOrder>
                   </moduleControl>
                 </moduleControls>

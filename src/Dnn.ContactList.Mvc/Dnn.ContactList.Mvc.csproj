@@ -42,10 +42,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DotNetNuke">
-      <HintPath>..\..\..\..\Dnn\Dnn.Platform8\DNN Platform\Library\bin\DotNetNuke.dll</HintPath>
+      <HintPath>..\..\..\..\..\iisroot\websites\platform574\bin\DotNetNuke.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke.Web.Mvc">
-      <HintPath>..\..\..\..\Dnn\Dnn.Platform8\DNN Platform\DotNetNuke.Web.Mvc\bin\DotNetNuke.Web.Mvc.dll</HintPath>
+      <HintPath>..\..\..\..\..\iisroot\websites\platform518\bin\bin\DotNetNuke.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
@@ -125,6 +125,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\Contact.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Providers\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,8 +1,8 @@
 ﻿<dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="Dnn.ContactList_Spa" type="Module" version="01.00.00" isSystem="true">
-      <friendlyName>Contact List</friendlyName>
-      <description>DNN Contact List</description>
+    <package name="Dnn.ContactList_Spa" type="Module" version="01.00.00">
+      <friendlyName>Contact List Spa</friendlyName>
+      <description>DNN Contact List SPA</description>
       <owner>
         <name>DNN</name>
         <organization>DNN Corp.</organization>
@@ -16,9 +16,19 @@
         <dependency type="CoreVersion">08.00.00</dependency>
       </dependencies>
       <components>
+        <component type="Script">
+          <scripts>
+            <basePath>DesktopModules\Dnn\ContactList</basePath>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>01.00.00.SqlDataProvider</name>
+              <version>01.00.00</version>
+            </script>
+          </scripts>
+        </component>
         <component type="Module">
           <desktopModule>
-            <moduleName>Dnn.ContactList_Spa</moduleName>
+            <moduleName>Dnn.ContactList.Spa</moduleName>
             <foldername>Dnn/ContactList</foldername>
             <businessControllerClass/>
             <supportedFeatures />
