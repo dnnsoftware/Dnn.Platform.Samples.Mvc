@@ -6,7 +6,7 @@
     <WebsiteBinPath>$(WebsitePath)\bin</WebsiteBinPath>
     <WebsiteInstallPath>$(WebsitePath)\Install\Module</WebsiteInstallPath>
     <Extension>zip</Extension>
-    <DNNFileName>ContactList_mvc.dnn</DNNFileName>
+    <DNNFileName>ContactList_mvc</DNNFileName>
     <PackageName>DNN_ContactList</PackageName>
     <ModuleFolderName>$(WebsitePath)\DesktopModules\MVC\Dnn\ContactList</ModuleFolderName>
   </PropertyGroup>
