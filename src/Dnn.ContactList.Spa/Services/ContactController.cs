@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.UI.WebControls;
 using Dnn.ContactList.Api;
+using Dnn.ContactList.Spa.Components;
 using Dnn.ContactList.Spa.Services.ViewModels;
 using DotNetNuke.Common;
 using DotNetNuke.Security;
@@ -20,12 +21,12 @@ namespace Dnn.ContactList.Spa.Services
     [DnnModuleAuthorize(AccessLevel = SecurityAccessLevel.View)]
     public class ContactController : DnnApiController
     {
-        private readonly IContactRepository _repository;
+        private readonly IContactService _contactService;
 
         /// <summary>
         /// Default Constructor constructs a new ContactController
         /// </summary>
-        public ContactController() : this(ContactRepository.Instance)
+        public ContactController() : this(ContactService.Instance)
         {
 
         }
@@ -33,11 +34,11 @@ namespace Dnn.ContactList.Spa.Services
         /// <summary>
         /// Constructor constructs a new ContactController with a passed in repository
         /// </summary>
-        public ContactController(IContactRepository repository)
+        public ContactController(IContactService service)
         {
-            Requires.NotNull(repository);
+            Requires.NotNull(service);
 
-            _repository = repository;
+            _contactService = service;
         }
 
         /// <summary>
@@ -47,9 +48,9 @@ namespace Dnn.ContactList.Spa.Services
         [HttpPost]
         public HttpResponseMessage DeleteContact(ContactViewModel viewModel)
         {
-            var contact = _repository.GetContact(viewModel.ContactId, PortalSettings.PortalId);
+            var contact = _contactService.GetContact(viewModel.ContactId, PortalSettings.PortalId);
 
-            _repository.DeleteContact(contact);
+            _contactService.DeleteContact(contact);
 
             var response = new
                             {
@@ -66,7 +67,7 @@ namespace Dnn.ContactList.Spa.Services
         [HttpGet]
         public HttpResponseMessage GetContact(int contactId)
         {
-            var contact = new ContactViewModel(_repository.GetContact(contactId, PortalSettings.PortalId));
+            var contact = new ContactViewModel(_contactService.GetContact(contactId, PortalSettings.PortalId));
 
             var response = new
             {
@@ -87,7 +88,7 @@ namespace Dnn.ContactList.Spa.Services
         [HttpGet]
         public HttpResponseMessage GetContacts()
         {
-            var contactList = _repository.GetContacts(PortalSettings.PortalId);
+            var contactList = _contactService.GetContacts(PortalSettings.PortalId);
             var contacts = contactList
                                  .Select(contact => new ContactViewModel(contact))
                                  .ToList();
@@ -125,12 +126,12 @@ namespace Dnn.ContactList.Spa.Services
                                     Twitter = viewModel.Twitter,
                                     PortalId = PortalSettings.PortalId
                                 };
-                _repository.AddContact(contact);
+                _contactService.AddContact(contact);
             }
             else
             {
                 //Update
-                contact = _repository.GetContact(viewModel.ContactId, PortalSettings.PortalId);
+                contact = _contactService.GetContact(viewModel.ContactId, PortalSettings.PortalId);
 
                 if (contact != null)
                 {
@@ -140,7 +141,7 @@ namespace Dnn.ContactList.Spa.Services
                     contact.Phone = viewModel.Phone;
                     contact.Twitter = viewModel.Twitter;
                 }
-                _repository.UpdateContact(contact);
+                _contactService.UpdateContact(contact);
             }
             var response = new
             {
