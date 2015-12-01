@@ -99,6 +99,8 @@
     <Content Include="license.txt" />
     <Content Include="module.css" />
     <Content Include="ReleaseNotes.txt" />
+    <Content Include="ShowInfo.css" />
+    <Content Include="ShowInfo.html" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\BusinessController.cs" />
@@ -131,6 +133,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\ContactList.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\ShowInfo.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

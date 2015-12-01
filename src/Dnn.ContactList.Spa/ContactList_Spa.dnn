@@ -45,6 +45,17 @@
                     <supportsPopUps>False</supportsPopUps>
                     <viewOrder>0</viewOrder>
                   </moduleControl>
+                  <moduleControl>
+                    <controlKey>ShowInfo</controlKey>
+                    <controlSrc>DesktopModules/Dnn/ContactList/ShowInfo.html</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle>Edit Content</controlTitle>
+                    <controlType>Edit</controlType>
+                    <iconFile />
+                    <helpUrl />
+                    <viewOrder>0</viewOrder>
+                    <supportsPopUps>True</supportsPopUps>
+                  </moduleControl>
                 </moduleControls>
               </moduleDefinition>
             </moduleDefinitions>
