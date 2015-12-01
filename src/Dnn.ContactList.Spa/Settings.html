@@ -1,0 +1,20 @@
+﻿[JavaScript:{ jsname: "JQuery" }]
+[JavaScript:{ jsname: "Knockout" }]
+[JavaScript:{ path: "~/Resources/Shared/scripts/dnn.jquery.js"}]
+[JavaScript:{ path: "~/DesktopModules/Dnn/ContactList/ClientScripts/QuickSettings.js"}]
+
+<div id="QuickSettings-[ModuleContext:ModuleId]" class="dnnForm">
+    <div class="dnnFormMessage dnnFormInfo">
+        [Resx:{key:"EmptyQuickSetting"}]
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+    jQuery(document).ready(function ($) {
+        var moduleId = [ModuleContext:ModuleId];
+
+        // identifier needed to initialize the quicksettings.
+        var element = 'QuickSettings-[ModuleContext:ModuleId]';
+        var quickSettings = new dnn.modules.spa.dnnContactListSpa.quickSettings(element, moduleId);
+        quickSettings.init();
+    });
+</script>

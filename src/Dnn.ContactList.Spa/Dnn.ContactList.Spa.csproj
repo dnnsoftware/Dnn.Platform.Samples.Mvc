@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClientScripts\contacts.js" />
+    <Content Include="ClientScripts\QuickSettings.js" />
     <Content Include="ClientScripts\util.js" />
     <Content Include="ContactList.html" />
     <Content Include="ContactList.js" />
@@ -136,6 +137,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\ShowInfo.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Settings.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
