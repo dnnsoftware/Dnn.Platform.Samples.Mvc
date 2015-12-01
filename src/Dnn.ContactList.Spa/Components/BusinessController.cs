@@ -24,6 +24,8 @@ namespace Dnn.ContactList.Spa.Components
         {
             var tokens = new Dictionary<string, IPropertyAccess>();
             tokens["preloadeddata"] = new PreloadedDataPropertyAccess(moduleContext.PortalId);
+            tokens["contactsettings"] = new SettingsPropertyAccess(moduleContext.ModuleId, moduleContext.TabId);
+            
             return tokens;
         }
     }

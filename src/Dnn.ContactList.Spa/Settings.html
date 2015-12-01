@@ -2,10 +2,14 @@
 [JavaScript:{ jsname: "Knockout" }]
 [JavaScript:{ path: "~/Resources/Shared/scripts/dnn.jquery.js"}]
 [JavaScript:{ path: "~/DesktopModules/Dnn/ContactList/ClientScripts/QuickSettings.js"}]
+[JavaScript:{ path: "~/DesktopModules/Dnn/ContactList/ClientScripts/util.js"}]
 
 <div id="QuickSettings-[ModuleContext:ModuleId]" class="dnnForm">
     <div class="dnnFormMessage dnnFormInfo">
-        [Resx:{key:"EmptyQuickSetting"}]
+        [Resx:{key:"EnableForm"}]
+    </div>
+    <div>
+        <input type="checkbox" data-bind="checked: isFormEnabled" />
     </div>
 </div>
 <script language="javascript" type="text/javascript">
@@ -13,8 +17,12 @@
         var moduleId = [ModuleContext:ModuleId];
 
         // identifier needed to initialize the quicksettings.
-        var element = 'QuickSettings-[ModuleContext:ModuleId]';
-        var quickSettings = new dnn.modules.spa.dnnContactListSpa.quickSettings(element, moduleId);
+        var element = 'QuickSettings-'+moduleId;
+        var config = {
+            isFormEnabled: [contactsettings:IsFormEnabled]
+        };
+
+        var quickSettings = new dnn.modules.spa.dnnContactListSpa.quickSettings(config, element, moduleId, ko);
         quickSettings.init();
     });
 </script>

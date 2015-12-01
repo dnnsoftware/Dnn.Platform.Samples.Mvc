@@ -1,11 +1,10 @@
-﻿using System.Globalization;
-using System.Linq;
-using Dnn.ContactList.Spa.Services.ViewModels;
+﻿// Copyright (c) DNN Software. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using System.Globalization;
 using DotNetNuke.Common;
-using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Services.Tokens;
-using Newtonsoft.Json;
 
 namespace Dnn.ContactList.Spa.Components
 {
@@ -14,15 +13,16 @@ namespace Dnn.ContactList.Spa.Components
     /// Engine implemented to be used in SPA modules. The method 'GetProperty' allows to access to 
     /// information that will be available as properties in the custom token.
     /// </summary>
-    public class PreloadedDataPropertyAccess : IPropertyAccess
+    public class SettingsPropertyAccess : IPropertyAccess
     {
-        private readonly IContactService _service;
-        private readonly int _portalId;
-        
+        private readonly ISettingsService _service;
+        private readonly int _moduleId;
+        private readonly int _tabId;
+
         /// <summary>
         /// Default Constructor constructs a new PreloadedDataPropertyAccess
         /// </summary>
-        public PreloadedDataPropertyAccess(int portalId) : this(portalId, ContactService.Instance)
+        public SettingsPropertyAccess(int moduleId, int tabId) : this(moduleId, tabId, SettingsService.Instance)
         {
 
         }
@@ -30,12 +30,13 @@ namespace Dnn.ContactList.Spa.Components
         /// <summary>
         /// Constructor constructs a new PreloadedDataPropertyAccess with a passed in service
         /// </summary>
-        public PreloadedDataPropertyAccess(int portalId, IContactService service)
+        public SettingsPropertyAccess(int moduleId, int tabId, ISettingsService service)
         {
             Requires.NotNull(service);
 
             _service = service;
-            _portalId = portalId;
+            _tabId = tabId;
+            _moduleId = moduleId;
         }
 
         /// <summary>
@@ -47,7 +48,7 @@ namespace Dnn.ContactList.Spa.Components
         }
 
         /// <summary>
-        /// Get Preloaded Data Property.
+        /// Get Setting Property.
         /// </summary>
         /// <param name="propertyName">property name.</param>
         /// <param name="format">format.</param>
@@ -58,11 +59,19 @@ namespace Dnn.ContactList.Spa.Components
         /// <returns></returns>
         public string GetProperty(string propertyName, string format, CultureInfo formatProvider, UserInfo accessingUser, Scope accessLevel, ref bool propertyNotFound)
         {
-            var contactList = _service.GetContacts(_portalId);
-            var contacts = contactList
-                                 .Select(contact => new ContactViewModel(contact))
-                                 .ToList();
-            return "{ results: " + JsonConvert.SerializeObject(contacts) + "}";
+            string propertyValue = "";
+
+            switch (propertyName)
+            {
+                case "IsFormEnabled":
+                    propertyValue = _service.IsFormEnabled(_moduleId, _tabId).ToString().ToLower();
+                    break;
+                default:
+                    propertyNotFound = true;
+                    break;
+            }
+
+            return propertyValue;
         }
     }
 }

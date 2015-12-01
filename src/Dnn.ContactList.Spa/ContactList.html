@@ -34,11 +34,11 @@
                 </div>
             </div>
         </div>
-        <div class="buttons">
+        <div class="buttons" data-bind="visible: isFormEnabled()">
             <a class="dnnPrimaryAction" data-bind="click: addContact">[Resx:{key:"AddContact"}]</a>
         </div>
     </div>
-    <div class="editContact" data-bind="visible: isEditMode(), with: selectedContact">
+    <div class="editContact" data-bind="visible: isFormEnabled() && isEditMode(), with: selectedContact">
         <div>
             <label>[Resx:{key:"FirstName"}]</label>
             <input data-bind="value: firstName" />
@@ -76,6 +76,7 @@
         };
 
         var settings = {
+            isFormEnabled: [contactsettings:IsFormEnabled],
             servicesFramework: $.ServicesFramework(moduleId)
         }
 

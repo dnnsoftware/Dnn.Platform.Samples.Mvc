@@ -101,17 +101,23 @@
     <Content Include="module.css" />
     <Content Include="ReleaseNotes.txt" />
     <Content Include="ShowInfo.css" />
+    <Content Include="Settings.html" />
     <Content Include="ShowInfo.html" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\BusinessController.cs" />
     <Compile Include="Components\ContactService.cs" />
     <Compile Include="Components\IContactService.cs" />
+    <Compile Include="Components\ISettingsService.cs" />
+    <Compile Include="Components\SettingsPropertyAccess.cs" />
     <Compile Include="Components\PreloadedDataPropertyAccess.cs" />
+    <Compile Include="Components\SettingsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ContactController.cs" />
     <Compile Include="Services\ServiceRouteMapper.cs" />
+    <Compile Include="Services\SettingsController.cs" />
     <Compile Include="Services\ViewModels\ContactViewModel.cs" />
+    <Compile Include="Services\ViewModels\SettingsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

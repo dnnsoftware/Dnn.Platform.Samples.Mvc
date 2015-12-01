@@ -14,6 +14,7 @@ contactList.contactsViewModel = function(config) {
         return util.sf;
     };
 
+    self.isFormEnabled = ko.observable(config.settings.isFormEnabled);
     self.isEditMode = ko.observable(false);
     self.contacts = ko.observableArray([]);
 

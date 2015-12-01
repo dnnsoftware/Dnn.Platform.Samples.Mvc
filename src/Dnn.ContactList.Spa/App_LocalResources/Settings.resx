@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EmptyQuickSetting.Text" xml:space="preserve">
-    <value>This is a empty quick settings</value>
+  <data name="EnableForm.Text" xml:space="preserve">
+    <value>Enable form to add new users?</value>
   </data>
 </root>
