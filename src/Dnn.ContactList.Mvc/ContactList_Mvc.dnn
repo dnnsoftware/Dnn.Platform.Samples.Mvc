@@ -70,6 +70,10 @@
               <path>bin</path>
               <name>Dnn.ContactList.Mvc.dll</name>
             </assembly>
+            <assembly>
+              <path>bin</path>
+              <name>Dnn.ContactList.Api.dll</name>
+            </assembly>            
           </assemblies>
         </component>
         <component type="ResourceFile">

@@ -77,6 +77,10 @@
               <path>bin</path>
               <name>Dnn.ContactList.Spa.dll</name>
             </assembly>
+            <assembly>
+              <path>bin</path>
+              <name>Dnn.ContactList.Api.dll</name>
+            </assembly>
           </assemblies>
         </component>
         <component type="ResourceFile">
