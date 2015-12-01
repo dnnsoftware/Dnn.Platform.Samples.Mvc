@@ -1,8 +1,10 @@
-﻿using System.Globalization;
+﻿// Copyright (c) DNN Software. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using System.Globalization;
 using System.Linq;
 using Dnn.ContactList.Spa.Services.ViewModels;
 using DotNetNuke.Common;
-using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Services.Tokens;
 using Newtonsoft.Json;
