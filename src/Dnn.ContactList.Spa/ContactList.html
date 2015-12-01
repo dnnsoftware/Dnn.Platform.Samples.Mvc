@@ -67,18 +67,17 @@
 </div>
 
 <script language="javascript" type="text/javascript">
-    var moduleId = parseInt("[ModuleContext:ModuleId]");
-
-    var preloadedData = [PreloadedData:All];
-
     jQuery(document).ready(function ($) {
+        var moduleId = parseInt("[ModuleContext:ModuleId]");
+        var preloadedData = [PreloadedData:All];
+
         var localizedSettings = {
         };
 
         var settings = {
             isFormEnabled: [contactsettings:IsFormEnabled],
             servicesFramework: $.ServicesFramework(moduleId)
-        }
+        };
 
         var contactList = new ContactList($, ko, settings, localizedSettings, preloadedData);
         contactList.init("#ContactList-" + moduleId);
