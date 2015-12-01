@@ -30,7 +30,7 @@
           <desktopModule>
             <moduleName>Dnn.ContactList.Spa</moduleName>
             <foldername>Dnn/ContactList</foldername>
-            <businessControllerClass/>
+            <businessControllerClass>Dnn.ContactList.Spa.Components.BusinessController</businessControllerClass>
             <supportedFeatures />
             <moduleDefinitions>
               <moduleDefinition>

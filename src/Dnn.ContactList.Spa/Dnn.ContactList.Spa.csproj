@@ -101,8 +101,10 @@
     <Content Include="ReleaseNotes.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\BusinessController.cs" />
     <Compile Include="Components\ContactService.cs" />
     <Compile Include="Components\IContactService.cs" />
+    <Compile Include="Components\PreloadedDataPropertyAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ContactController.cs" />
     <Compile Include="Services\ServiceRouteMapper.cs" />

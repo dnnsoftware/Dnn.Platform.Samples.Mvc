@@ -1,4 +1,4 @@
-﻿function ContactList($, ko, settings, resx){
+﻿function ContactList($, ko, settings, resx, preloadedData){
     var $rootElement;
 
     var viewModel = {};
@@ -8,6 +8,7 @@
 
         var config = {
             settings: settings,
+            preloadedData: preloadedData,
             resx: resx,
             util: contactList.utility(settings, resx),
             $rootElement: $rootElement
@@ -15,8 +16,6 @@
 
         viewModel = new contactList.contactsViewModel(config);
         viewModel.init();
-
-        viewModel.getContacts();
 
         ko.applyBindings(viewModel, $rootElement[0]);
     }

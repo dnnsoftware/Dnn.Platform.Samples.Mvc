@@ -6,6 +6,7 @@ contactList.contactsViewModel = function(config) {
     var self = this;
     var resx = config.resx;
     var util = config.util;
+    var preloadedData = config.preloadedData;
     var $rootElement = config.$rootElement;
 
     util.contactService = function(){
@@ -79,7 +80,12 @@ contactList.contactsViewModel = function(config) {
         );
     };
 
-    self.init = function(){
+    self.init = function () {
+        if (preloadedData) {
+            self.load(preloadedData);
+        } else {
+            self.getContacts();
+        }
     };
 
     self.load = function(data) {
