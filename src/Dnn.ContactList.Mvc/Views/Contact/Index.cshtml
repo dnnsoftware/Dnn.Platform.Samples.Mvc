@@ -1,9 +1,10 @@
-﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IList<Dnn.ContactList.Api.Contact>>
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<DotNetNuke.Collections.IPagedList<Dnn.ContactList.Api.Contact>>
 
 <div>
+    
     @foreach (var contact in Model)
     {
-        <div class="contactCard">
+        <div class="contactCard" style="float: left;">
             @{
                 if (Dnn.ModuleContext.IsEditable)
                 {
@@ -35,4 +36,15 @@
             </div>
         </div>
     }
+    <div style="clear: both; margin-right: 130px;" class="right">
+        @if (Model.HasPreviousPage)
+        {
+            <a href="@Url.Action("Index", "Contact", new {pageIndex = Model.PageIndex - 1, pageSize = Model.PageSize})"><i class="fa fa-arrow-left"></i></a>
+        }
+        @Dnn.LocalizeString("PageOf").Replace("[PageIndex]", (@Model.PageIndex + 1).ToString()).Replace("[PageCount]", @Model.PageCount.ToString())
+        @if (Model.HasNextPage)
+        {
+            <a href="@Url.Action("Index", "Contact", new {pageIndex = Model.PageIndex + 1, pageSize = Model.PageSize})"><i class="fa fa-arrow-right"></i></a>
+        }
+    </div>
 </div>

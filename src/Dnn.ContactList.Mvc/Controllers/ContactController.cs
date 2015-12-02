@@ -83,16 +83,19 @@ namespace Dnn.ContactList.Mvc.Controllers
         }
 
         /// <summary>
-        /// The Index method is the default Action method
+        /// The Index method is the default Action method.
         /// </summary>
+        /// <param name="searchTerm">Term to search.</param>
+        /// <param name="pageIndex">Index of the current page.</param>
+        /// <param name="pageSize">Number of records per page.</param>
         /// <returns></returns>
         [HttpGet]
         [ModuleAction(ControlKey = "Edit", TitleKey = "AddContact")]
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm = "", int pageIndex = 0, int pageSize = 12)
         {
-            var contacts = _repository.GetContacts(PortalSettings.PortalId);
+            var contacts = _repository.GetContacts(searchTerm, PortalSettings.PortalId, pageIndex, pageSize);
 
-            return View(contacts.ToList());
+            return View(contacts);
         }
     }
 }
