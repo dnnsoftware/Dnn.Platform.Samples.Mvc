@@ -100,6 +100,7 @@
     <Content Include="license.txt" />
     <Content Include="module.css" />
     <Content Include="ReleaseNotes.txt" />
+    <Content Include="Settings.css" />
     <Content Include="ShowInfo.css" />
     <Content Include="Settings.html" />
     <Content Include="ShowInfo.html" />
