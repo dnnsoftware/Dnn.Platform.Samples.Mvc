@@ -1,6 +1,7 @@
 ﻿[JavaScript:{ jsname: "JQuery" }]
 [JavaScript:{ jsname: "Knockout" }]
 [JavaScript:{ path: "~/Resources/Shared/scripts/dnn.jquery.js"}]
+[JavaScript:{ path: "~/DesktopModules/Dnn/ContactList/ClientScripts/QuickSettingsDispatcher.js"}]
 [JavaScript:{ path: "~/DesktopModules/Dnn/ContactList/ClientScripts/QuickSettings.js"}]
 [JavaScript:{ path: "~/DesktopModules/Dnn/ContactList/ClientScripts/util.js"}]
 
@@ -16,7 +17,8 @@
         // identifier needed to initialize the quicksettings.
         var element = 'QuickSettings-'+moduleId;
         var config = {
-            isFormEnabled: [contactsettings:IsFormEnabled]
+            isFormEnabled: [contactsettings:IsFormEnabled],
+            quickSettingsDispatcher: dnn.modules.spa.dnnContactListSpa.quickSettingsDispatcher
         };
 
         var quickSettings = new dnn.modules.spa.dnnContactListSpa.quickSettings(config, element, moduleId, ko);

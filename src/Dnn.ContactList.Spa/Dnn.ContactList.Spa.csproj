@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClientScripts\contacts.js" />
+    <Content Include="ClientScripts\QuickSettingsDispatcher.js" />
     <Content Include="ClientScripts\QuickSettings.js" />
     <Content Include="ClientScripts\util.js" />
     <Content Include="ContactList.html" />

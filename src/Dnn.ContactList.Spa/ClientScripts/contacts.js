@@ -9,6 +9,9 @@ contactList.contactsViewModel = function(config) {
     var preloadedData = config.preloadedData;
     var $rootElement = config.$rootElement;
 
+    var quickSettingsDispatcher = config.settings.quickSettingsDispatcher;
+    var moduleId = config.settings.moduleId;
+
     util.contactService = function(){
         util.sf.serviceController = "Contact";
         return util.sf;
@@ -81,12 +84,17 @@ contactList.contactsViewModel = function(config) {
         );
     };
 
+    var updateView = function updateViewHandler(settings) {
+        self.isFormEnabled(settings.isFormEnabled);
+    };
+
     self.init = function () {
         if (preloadedData) {
             self.load(preloadedData);
         } else {
             self.getContacts();
         }
+        quickSettingsDispatcher.addSubcriber(moduleId, quickSettingsDispatcher.eventTypes.SAVE, updateView);
     };
 
     self.load = function(data) {

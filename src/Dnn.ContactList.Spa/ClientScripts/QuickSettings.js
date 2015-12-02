@@ -5,6 +5,8 @@ dnn.modules.spa.dnnContactListSpa = dnn.modules.spa.dnnContactListSpa || {};
 
 dnn.modules.spa.dnnContactListSpa.quickSettings = function (config, root, moduleId, ko) {
     var savedIsFormEnabled = config.isFormEnabled;
+    var quickSettingsDispatcher = config.quickSettingsDispatcher;
+
     var viewModel = {
         isFormEnabled: ko.observable(savedIsFormEnabled)
     };
@@ -33,6 +35,8 @@ dnn.modules.spa.dnnContactListSpa.quickSettings = function (config, root, module
                 function(data){
                     //Success
                     deferred.resolve();
+                    savedIsFormEnabled = params.isFormEnabled;
+                    quickSettingsDispatcher.notify(moduleId, quickSettingsDispatcher.eventTypes.SAVE, params);
                 },
 
                 function(data){
@@ -49,6 +53,8 @@ dnn.modules.spa.dnnContactListSpa.quickSettings = function (config, root, module
         var deferred = $.Deferred();
         viewModel.isFormEnabled(savedIsFormEnabled);
         deferred.resolve();
+
+        quickSettingsDispatcher.notify(moduleId, quickSettingsDispatcher.eventTypes.CANCEL);
         return deferred.promise();
     };
 

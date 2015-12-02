@@ -2,13 +2,14 @@
 [JavaScript:{ path: "~/DesktopModules/Dnn/ContactList/ClientScripts/contacts.js"}]
 [JavaScript:{ path: "~/DesktopModules/Dnn/ContactList/ClientScripts/util.js"}]
 [JavaScript:{ path: "~/Resources/Shared/scripts/dnn.jquery.js"}]
+[JavaScript:{ path: "~/DesktopModules/Dnn/ContactList/ClientScripts/QuickSettingsDispatcher.js"}]
 [ModuleAction:{controlKey : "ShowInfo", securityAccessLevel : "Edit", titleKey: "ShowModuleInfo", localResourceFile: "~/DesktopModules/Dnn/ContactList/App_LocalResources/ShowInfo.resx" }]
 
 <div id="ContactList-[ModuleContext:ModuleId]" class="dnnContactList">
     <div data-bind="visible: !isEditMode()">
         <div data-bind="foreach: contacts">
             <div class="contactCard">
-                <div class="right">
+                <div class="right" data-bind="visible: $root.isFormEnabled()">
                     <a title="[Resx:{key:'Edit'}]" data-bind="click: $parent.editContact">
                         <i class="fa fa-pencil"></i>
                     </a>
@@ -76,7 +77,9 @@
 
         var settings = {
             isFormEnabled: [contactsettings:IsFormEnabled],
-            servicesFramework: $.ServicesFramework(moduleId)
+            servicesFramework: $.ServicesFramework(moduleId),
+            moduleId: moduleId,
+            quickSettingsDispatcher: dnn.modules.spa.dnnContactListSpa.quickSettingsDispatcher
         };
 
         var contactList = new ContactList($, ko, settings, localizedSettings, preloadedData);
