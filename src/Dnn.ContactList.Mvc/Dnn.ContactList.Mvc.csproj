@@ -45,9 +45,8 @@
       <HintPath>..\..\packages\DotNetNuke.Core.8.0.0.581\lib\net40\DotNetNuke.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DotNetNuke.Web.Mvc, Version=8.0.0.581, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\DotNetNuke.Web.Mvc.8.0.0.581\lib\net45\DotNetNuke.Web.Mvc.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="DotNetNuke.Web.Mvc">
+      <HintPath>..\..\packages\DotNetNuke.Web.Mvc.8.0.0.601\lib\net45\DotNetNuke.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ApplicationBlocks.Data, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DotNetNuke.Core.8.0.0.581\lib\net40\Microsoft.ApplicationBlocks.Data.dll</HintPath>
@@ -134,6 +133,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Providers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Contact\_ContactPartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

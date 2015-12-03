@@ -1,40 +1,11 @@
-﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<DotNetNuke.Collections.IPagedList<Dnn.ContactList.Api.Contact>>
+﻿@using DotNetNuke.Web.Mvc.Helpers
+@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<DotNetNuke.Collections.IPagedList<Dnn.ContactList.Api.Contact>>
 
 <div>
     
     @foreach (var contact in Model)
     {
-        <div class="contactCard" style="float: left;">
-            @{
-                if (Dnn.ModuleContext.IsEditable)
-                {
-                    <div class="right">
-                        <a href="@Url.Action("Edit", "Contact", new {ctl = "Edit", contactId = contact.ContactId})" title="@Dnn.LocalizeString("Edit")">
-                            <i class="fa fa-pencil"></i>
-                        </a>
-                        <a href="@Url.Action("Delete", "Contact", new {contactId = contact.ContactId})" title="@Dnn.LocalizeString("Delete")">
-                            <i class="fa fa-trash"></i>
-                        </a>
-                    </div>
-                }
-            }
-            <div>
-                <span>@contact.FirstName</span>
-                <span>@contact.LastName</span>
-            </div>
-            <div>
-                <span>@Dnn.LocalizeString("Email")</span>
-                <span>@contact.Email</span>
-            </div>
-            <div>
-                <span>@Dnn.LocalizeString("Phone")</span>
-                <span>@contact.Phone</span>
-            </div>
-            <div>
-                <span>@Dnn.LocalizeString("Twitter")</span>
-                <span>@contact.Twitter</span>
-            </div>
-        </div>
+        Html.RenderPartial("_ContactPartial", contact, null);
     }
     <div style="clear: both; margin-right: 130px;" class="right">
         @if (Model.HasPreviousPage)
