@@ -28,7 +28,7 @@ Once compiled in RELEASE mode, the installable packages can be obtained from [SO
 
 Following packages are created:
 
-1. DNN_ContactList_Mvc_01.00.00_Install.zip
+1. DNN_ContactList_Mvc_01.00.01_Install.zip
 
 2. DNN_ContactList_SPA_01.00.00_Install.zip
 
