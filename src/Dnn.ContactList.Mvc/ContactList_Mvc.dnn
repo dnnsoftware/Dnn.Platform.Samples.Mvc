@@ -44,7 +44,7 @@
                 <moduleControls>
                   <moduleControl>
                     <controlKey />
-                    <controlSrc>Contact/Index.mvc</controlSrc>
+                    <controlSrc>Dnn.ContactList.Mvc.Controllers/Contact/Index.mvc</controlSrc>
                     <supportsPartialRendering>False</supportsPartialRendering>
                     <controlTitle />
                     <controlType>View</controlType>
@@ -55,13 +55,23 @@
                   </moduleControl>
                   <moduleControl>
                     <controlKey>Edit</controlKey>
-                    <controlSrc>Contact/Edit.mvc</controlSrc>
+                    <controlSrc>Dnn.ContactList.Mvc.Controllers/Contact/Edit.mvc</controlSrc>
                     <supportsPartialRendering>True</supportsPartialRendering>
                     <controlTitle>Add/Update Contact</controlTitle>
                     <controlType>View</controlType>
                     <iconFile />
                     <helpUrl/>
                     <supportsPopUps>True</supportsPopUps>
+                    <viewOrder>0</viewOrder>
+                  </moduleControl>
+                  <moduleControl>
+                    <controlKey>Settings</controlKey>
+                    <controlSrc>Dnn.ContactList.Mvc.Controllers/Settings/Index.mvc</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle>Contact List Settings</controlTitle>
+                    <controlType>Edit</controlType>
+                    <iconFile />
+                    <helpUrl/>
                     <viewOrder>0</viewOrder>
                   </moduleControl>
                 </moduleControls>

@@ -2,7 +2,7 @@
 @inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<Dnn.ContactList.Api.Contact>
 <div class="contactCard" style="float: left;">
     @{
-        if (Dnn.ModuleContext.IsEditable)
+        if (Convert.ToBoolean(Dnn.ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("AllowContactCreation", false)))
         {
             <div class="right">
                 <a href="@Url.Action("Edit", "Contact", new {ctl = "Edit", contactId = Model.ContactId})" title="@Dnn.LocalizeString("Edit")">

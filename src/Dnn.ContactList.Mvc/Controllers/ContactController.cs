@@ -1,9 +1,11 @@
 ﻿// Copyright (c) DNN Software. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using System;
 using System.Linq;
 using System.Web.Mvc;
 using Dnn.ContactList.Api;
+using DotNetNuke.Collections;
 using DotNetNuke.Common;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Web.Mvc.Framework.ActionFilters;
@@ -91,9 +93,9 @@ namespace Dnn.ContactList.Mvc.Controllers
         /// <returns></returns>
         [HttpGet]
         [ModuleAction(ControlKey = "Edit", TitleKey = "AddContact")]
-        public ActionResult Index(string searchTerm = "", int pageIndex = 0, int pageSize = 12)
+        public ActionResult Index(string searchTerm = "", int pageIndex = 0)
         {
-            var contacts = _repository.GetContacts(searchTerm, PortalSettings.PortalId, pageIndex, pageSize);
+            var contacts = _repository.GetContacts(searchTerm, PortalSettings.PortalId, pageIndex, ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("PageSize", 10));
 
             return View(contacts);
         }
