@@ -19,7 +19,7 @@ DotNetNuke.Web
 
 DotNetNuke.Web.Mvc
 
-The nuget packages can be downloaded from our public Nuget server (no credetials needed)
+The nuget packages can be downloaded from our public Nuget server (no credentials needed)
 
 https://build.dnnsoftware.com/guestAuth/app/nuget/v1/FeedService.svc/
 
