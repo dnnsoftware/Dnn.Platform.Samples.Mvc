@@ -72,16 +72,23 @@ namespace Dnn.ContactList.Mvc.Controllers
         [HttpPost]
         public ActionResult Edit(Contact contact)
         {
-            if (contact.ContactId == -1)
+            if (ModelState.IsValid)
             {
-                _repository.AddContact(contact);
+                if (contact.ContactId == -1)
+                {
+                    _repository.AddContact(contact);
+                }
+                else
+                {
+                    _repository.UpdateContact(contact);
+                }
+
+                return RedirectToDefaultRoute();
             }
             else
             {
-                _repository.UpdateContact(contact);
+                return View(contact);
             }
-
-            return RedirectToDefaultRoute();
         }
 
         /// <summary>

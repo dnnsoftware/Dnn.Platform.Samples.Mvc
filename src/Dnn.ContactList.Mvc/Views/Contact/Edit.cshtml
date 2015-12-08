@@ -1,29 +1,37 @@
 ﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<Dnn.ContactList.Api.Contact>
 
+@using DotNetNuke.Services.Localization
 @using DotNetNuke.Web.Mvc.Helpers
 
 <div class="editContact">
+    @*@Html.ValidationSummary(true)*@
     <div>
-        <label>@Dnn.LocalizeString("FirstName")</label>
+        <label>@Dnn.LocalizeString("FirstName")*</label>
         @Html.TextBoxFor(m => m.FirstName)
+        @Html.ValidationMessageFor(m => m.FirstName, Localization.GetString("FirstNameRequired"))
     </div>
     <div>
-        <label>@Dnn.LocalizeString("LastName")</label>
+        <label>@Dnn.LocalizeString("LastName")*</label>
         @Html.TextBoxFor(m => m.LastName)
+        @Html.ValidationMessageFor(m => m.LastName, Localization.GetString("LastNameRequired"))
     </div>
     <div>
-        <label>@Dnn.LocalizeString("Email")</label>
+        <label>@Dnn.LocalizeString("Email")*</label>
         @Html.TextBoxFor(m => m.Email)
+        @Html.ValidationMessageFor(m => m.Email, Localization.GetString("EmailRequired"))
+
     </div>
     <div>
-        <label>@Dnn.LocalizeString("Phone")</label>
+        <label>@Dnn.LocalizeString("Phone")*</label>
         @Html.TextBoxFor(m => m.Phone)
+        @Html.ValidationMessageFor(m => m.Phone, Localization.GetString("PhoneRequired"))
     </div>
     <div>
-        <label>@Dnn.LocalizeString("Twitter")</label>
+        <label>@Dnn.LocalizeString("Twitter")*</label>
         @Html.TextBoxFor(m => m.Twitter)
+        @Html.ValidationMessageFor(m => m.Twitter, Localization.GetString("TwitterRequired"))
     </div>
     <div class="buttons">
-        <button type="submit" class="dnnPrimaryAction">@Dnn.LocalizeString("Save")</button>
+        <button type="submit" id="btnSave" class="dnnPrimaryAction">@Dnn.LocalizeString("Save")</button>
     </div>
 </div>

@@ -126,11 +126,20 @@
   <data name="Email.Text" xml:space="preserve">
     <value>Email Address</value>
   </data>
+  <data name="EmailRequired.Text" xml:space="preserve">
+    <value>Valid email is required</value>
+  </data>
   <data name="FirstName.Text" xml:space="preserve">
     <value>First Name</value>
   </data>
+  <data name="FirstNameRequired.Text" xml:space="preserve">
+    <value>First name is required</value>
+  </data>
   <data name="LastName.Text" xml:space="preserve">
     <value>Last Name</value>
+  </data>
+  <data name="LastNameRequired.Text" xml:space="preserve">
+    <value>Last name is required</value>
   </data>
   <data name="PageOf.Text" xml:space="preserve">
     <value>Page [PageIndex] of [PageCount]</value>
@@ -138,10 +147,16 @@
   <data name="Phone.Text" xml:space="preserve">
     <value>Phone</value>
   </data>
+  <data name="PhoneRequired.Text" xml:space="preserve">
+    <value>Valid phone is required</value>
+  </data>
   <data name="Save.Text" xml:space="preserve">
     <value>Save</value>
   </data>
   <data name="Twitter.Text" xml:space="preserve">
     <value>Twitter</value>
+  </data>
+  <data name="TwitterRequired.Text" xml:space="preserve">
+    <value>Twitter handle is required</value>
   </data>
 </root>
