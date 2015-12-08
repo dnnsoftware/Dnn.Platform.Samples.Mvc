@@ -8,28 +8,28 @@
     <div>
         <label>@Dnn.LocalizeString("FirstName")*</label>
         @Html.TextBoxFor(m => m.FirstName)
-        @Html.ValidationMessageFor(m => m.FirstName, Localization.GetString("FirstNameRequired"))
+        @Html.ValidationMessageFor(m => m.FirstName, @Dnn.LocalizeString("FirstNameRequired"))
     </div>
     <div>
         <label>@Dnn.LocalizeString("LastName")*</label>
         @Html.TextBoxFor(m => m.LastName)
-        @Html.ValidationMessageFor(m => m.LastName, Localization.GetString("LastNameRequired"))
+        @Html.ValidationMessageFor(m => m.LastName, @Dnn.LocalizeString("LastNameRequired"))
     </div>
     <div>
         <label>@Dnn.LocalizeString("Email")*</label>
         @Html.TextBoxFor(m => m.Email)
-        @Html.ValidationMessageFor(m => m.Email, Localization.GetString("EmailRequired"))
+        @Html.ValidationMessageFor(m => m.Email, @Dnn.LocalizeString("EmailRequired"))
 
     </div>
     <div>
         <label>@Dnn.LocalizeString("Phone")*</label>
         @Html.TextBoxFor(m => m.Phone)
-        @Html.ValidationMessageFor(m => m.Phone, Localization.GetString("PhoneRequired"))
+        @Html.ValidationMessageFor(m => m.Phone, @Dnn.LocalizeString("PhoneRequired"))
     </div>
     <div>
         <label>@Dnn.LocalizeString("Twitter")*</label>
         @Html.TextBoxFor(m => m.Twitter)
-        @Html.ValidationMessageFor(m => m.Twitter, Localization.GetString("TwitterRequired"))
+        @Html.ValidationMessageFor(m => m.Twitter, @Dnn.LocalizeString("TwitterRequired"))
     </div>
     <div class="buttons">
         <button type="submit" id="btnSave" class="dnnPrimaryAction">@Dnn.LocalizeString("Save")</button>
