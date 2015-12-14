@@ -26,11 +26,11 @@
     width: 200px;
     margin-top: 20px;
 }
-
-.editContact .buttons {
+.buttons {
   margin-top: 10px;
   text-align: center;
   padding-top: 20px;
+  clear: both;
 }
 
 /* info and errors */

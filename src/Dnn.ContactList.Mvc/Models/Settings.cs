@@ -2,10 +2,6 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Resources;
-using System.Security.AccessControl;
-using DotNetNuke.Services.Localization;
 using Newtonsoft.Json;
 
 namespace Dnn.ContactList.Mvc.Models

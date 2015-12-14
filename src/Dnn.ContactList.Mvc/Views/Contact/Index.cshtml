@@ -1,4 +1,5 @@
-﻿@using DotNetNuke.Web.Mvc.Helpers
+﻿@using DotNetNuke.Collections
+@using DotNetNuke.Web.Mvc.Helpers
 @inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<DotNetNuke.Collections.IPagedList<Dnn.ContactList.Api.Contact>>
 
 <div>
@@ -18,4 +19,18 @@
             <a href="@Url.Action("Index", "Contact", new {pageIndex = Model.PageIndex + 1})"><i class="fa fa-arrow-right"></i></a>
         }
     </div>
+    @if (@Dnn.ModuleContext.IsEditable && Convert.ToBoolean(Dnn.ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("AllowContactCreation", false)))
+    {
+        <div class="buttons">
+            <a class="dnnPrimaryAction" href="@Url.Action("Edit", new {ctl = "Edit"})">@Dnn.LocalizeString("AddContact")</a>
+        </div>
+    }
 </div>
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            console.log('I am called');
+        });
+    </script>
+}
