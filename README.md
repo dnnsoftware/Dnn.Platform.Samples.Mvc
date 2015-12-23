@@ -32,6 +32,12 @@ Following packages are created:
 
 2. DNN_ContactList_SPA_01.00.00_Install.zip
 
+## Download Intall Packages without Compiling
+
+You may download both the MVC and SPA install-packages without compiling from:
+
+https://github.com/dnnsoftware/Dnn.Platform.Samples.Mvc/tree/master/Website/Install/Module
+
 ## Fork
 The original code is forked from https://github.com/cnurse/DnnConnect.Demo
 
