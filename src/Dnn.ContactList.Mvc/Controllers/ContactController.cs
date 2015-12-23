@@ -56,7 +56,6 @@ namespace Dnn.ContactList.Mvc.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
         public ActionResult Edit(int contactId = -1)
         {
             var contact = (contactId == -1)
@@ -72,6 +71,7 @@ namespace Dnn.ContactList.Mvc.Controllers
         /// <param name="contact">The contact to save</param>
         /// <returns></returns>
         [HttpPost]
+        [DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
         public ActionResult Edit(Contact contact)
         {
             if (ModelState.IsValid)
