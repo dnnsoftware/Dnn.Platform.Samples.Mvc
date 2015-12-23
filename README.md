@@ -36,7 +36,23 @@ Following packages are created:
 
 You may download both the MVC and SPA install-packages without compiling from:
 
+The zip file can be downloaded by clicking the link to zip files individually and then clicking the Raw button to download
+
 https://github.com/dnnsoftware/Dnn.Platform.Samples.Mvc/tree/master/Website/Install/Module
+
+## Download latest version of DNN Platform
+
+You may download the latest version of DNN Platform by either
+
+1. Going directly to the DNN's Team City build server. Login as Guest and go into Packaging step. Download the DNN_Platform_XXXX_Install.zip file from Artifact area. 
+
+https://build.dnnsoftware.com
+
+2. Get from nightly build 
+
+http://www.dnnsoftware.com/platform/build/nightly-builds
+
+DNN's build server (1 above) will get you the latest version of the installation package of DNN Platform.
 
 ## Fork
 The original code is forked from https://github.com/cnurse/DnnConnect.Demo
