@@ -16,6 +16,7 @@ namespace Dnn.ContactList.Mvc.Controllers
     /// <summary>
     /// ContactController is the MVC Controller class for managing Contacts in the UI
     /// </summary>
+    [DnnHandleError]
     public class ContactController : DnnController
     {
         private readonly IContactRepository _repository;
@@ -55,6 +56,7 @@ namespace Dnn.ContactList.Mvc.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
         public ActionResult Edit(int contactId = -1)
         {
             var contact = (contactId == -1)

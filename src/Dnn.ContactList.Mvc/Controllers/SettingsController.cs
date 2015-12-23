@@ -41,7 +41,7 @@ namespace Dnn.ContactList.Mvc.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateInput(false)]
-        [ValidateAntiForgeryToken]
+        [DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
         public ActionResult Index(Settings settings)
         {
             ModuleContext.Configuration.ModuleSettings["PageSize"] = settings.PageSize.ToString();
