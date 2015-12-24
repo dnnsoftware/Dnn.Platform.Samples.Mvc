@@ -41,18 +41,20 @@
     <DocumentationFile>bin\Dnn.ContactList.Spa.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DotNetNuke, Version=8.0.0.726, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\DotNetNuke.Core.8.0.0.726\lib\net40\DotNetNuke.dll</HintPath>
+    <Reference Include="DotNetNuke, Version=8.0.0.736, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DotNetNuke.Core.8.0.0.736\lib\net40\DotNetNuke.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DotNetNuke.Web">
-      <HintPath>..\..\packages\DotNetNuke.Web.8.0.0.726\lib\net40\DotNetNuke.Web.dll</HintPath>
+    <Reference Include="DotNetNuke.Web, Version=8.0.0.736, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DotNetNuke.Web.8.0.0.736\lib\net40\DotNetNuke.Web.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DotNetNuke.WebUtility">
-      <HintPath>..\..\packages\DotNetNuke.Web.8.0.0.726\lib\net40\DotNetNuke.WebUtility.dll</HintPath>
+    <Reference Include="DotNetNuke.WebUtility, Version=4.2.1.783, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DotNetNuke.Web.8.0.0.736\lib\net40\DotNetNuke.WebUtility.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.ApplicationBlocks.Data, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\DotNetNuke.Core.8.0.0.581\lib\net40\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+      <HintPath>..\..\packages\DotNetNuke.Core.8.0.0.736\lib\net40\Microsoft.ApplicationBlocks.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -61,9 +63,9 @@
       <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.1.1\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -74,13 +76,13 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.1.1\lib\net45\System.Web.Http.dll</HintPath>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.1.1\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
