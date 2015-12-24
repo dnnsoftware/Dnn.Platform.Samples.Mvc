@@ -100,7 +100,6 @@ namespace Dnn.ContactList.Mvc.Controllers
         /// <param name="pageIndex">Index of the current page.</param>
         /// <param name="pageSize">Number of records per page.</param>
         /// <returns></returns>
-        [HttpGet]
         [ModuleAction(ControlKey = "Edit", TitleKey = "AddContact")]
         public ActionResult Index(string searchTerm = "", int pageIndex = 0)
         {
