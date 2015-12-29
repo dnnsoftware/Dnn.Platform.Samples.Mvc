@@ -29,7 +29,7 @@ namespace Dnn.ContactList.Mvc.Controllers
         public ActionResult Index()
         {
             var settings = new Settings();
-            settings.PageSize = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("PageSize", 10);
+            settings.PageSize = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("PageSize", 9);
             settings.AllowContactCreation = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("AllowContactCreation", false);
             return View(settings);
         }
