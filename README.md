@@ -65,7 +65,7 @@ List View
 ![Add View](readme_images/AddView.PNG)
 Add View
 
-![SPA quick settings](readme_images/SPA-QuickSettings.PNG)
+![SPA quick settings](readme_images/SPA-Quick Settings.PNG)
 SPA Quick Settings
 
 ![MVC Module Settings](readme_images/MVC-ModuleSettings.PNG)
