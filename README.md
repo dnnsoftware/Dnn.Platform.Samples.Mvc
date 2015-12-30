@@ -57,5 +57,18 @@ DNN's build server (1 above) will get you the latest version of the installation
 ## Fork
 The original code is forked from https://github.com/cnurse/DnnConnect.Demo
 
+## Screenshots
+
+![List View](readme_images/ListView.PNG)
+List View
+
+![Add View](readme_images/AddView.PNG)
+Add View
+
+![SPA quick settings](readme_images/SPA-QuickSettings.PNG)
+SPA Quick Settings
+
+![MVC Module Settings](readme_images/MVC-ModuleSettings.PNG)
+MVC Module Settings
 
 
