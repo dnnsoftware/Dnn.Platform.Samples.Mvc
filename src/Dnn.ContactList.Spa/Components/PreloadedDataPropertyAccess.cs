@@ -20,7 +20,10 @@ namespace Dnn.ContactList.Spa.Components
     {
         private readonly IContactService _service;
         private readonly int _portalId;
-        
+        private readonly string searchTerm;
+        private readonly int pageIndex;
+        private readonly int pageSize;
+
         /// <summary>
         /// Default Constructor constructs a new PreloadedDataPropertyAccess
         /// </summary>
@@ -38,6 +41,9 @@ namespace Dnn.ContactList.Spa.Components
 
             _service = service;
             _portalId = portalId;
+            searchTerm = "";
+            pageIndex = 0;
+            pageSize = 5;
         }
 
         /// <summary>
@@ -60,11 +66,11 @@ namespace Dnn.ContactList.Spa.Components
         /// <returns></returns>
         public string GetProperty(string propertyName, string format, CultureInfo formatProvider, UserInfo accessingUser, Scope accessLevel, ref bool propertyNotFound)
         {
-            var contactList = _service.GetContacts(_portalId);
+            var contactList = _service.GetContacts(searchTerm, _portalId, pageIndex, pageSize);
             var contacts = contactList
                                  .Select(contact => new ContactViewModel(contact))
                                  .ToList();
-            return "{ results: " + JsonConvert.SerializeObject(contacts) + "}";
+            return "{ results: " + JsonConvert.SerializeObject(contacts) + ", pageCount: " + contactList.TotalCount + "}";
         }
     }
 }

@@ -2,6 +2,34 @@ if (typeof contactList === 'undefined' || contactList === null) {
     contactList = {};
 };
 
+ko.extenders.required = function (target, options) {
+    //add some sub-observables to our observable
+    target.hasError = ko.observable();
+    target.validationMessage = ko.observable();
+    target.validationClass = ko.observable();
+
+    var regEx = new RegExp(options.regEx);
+    //define a function to do validation
+    function validate(newValue) {
+        target.hasError(regEx.test(newValue) && newValue !== "" ? false : true);
+        target.validationClass(regEx.test(newValue) && newValue !== "" ? "form-control" : "form-control has-error");
+        target.validationMessage(regEx.test(newValue) && newValue !== "" ? "" : options.overrideMessage || "This field is required");
+    }
+
+    //validate whenever the value changes
+    target.subscribe(validate);
+
+    //return the original observable
+    return target;
+};
+
+function clearErrors(obsArr) {
+    for (var i = 0; i < obsArr.length; i++) {
+        obsArr[i].hasError(false);
+        obsArr[i].validationClass("form-control");
+    }
+}
+
 contactList.contactsViewModel = function(config) {
     var self = this;
     var resx = config.resx;
@@ -20,6 +48,8 @@ contactList.contactsViewModel = function(config) {
     self.isFormEnabled = ko.observable(config.settings.isFormEnabled);
     self.isEditMode = ko.observable(false);
     self.contacts = ko.observableArray([]);
+    self.totalResults = ko.observable(preloadedData.pageCount);
+    self.pageIndex = ko.observable(0);
 
     self.selectedContact = new contactList.contactViewModel(self, config);
 
@@ -30,6 +60,7 @@ contactList.contactsViewModel = function(config) {
     self.addContact = function(){
         toggleView();
         self.selectedContact.init();
+        clearErrors([self.selectedContact.firstName, self.selectedContact.lastName, self.selectedContact.phone, self.selectedContact.email]);
     };
 
     self.closeEdit = function() {
@@ -67,12 +98,16 @@ contactList.contactsViewModel = function(config) {
 
     self.getContacts = function () {
         var params = {
+            pageSize: self.pageSize,
+            pageIndex: self.pageIndex(),
+            searchTerm: ""
         };
 
         util.contactService().get("GetContacts", params,
             function(data) {
                 if (typeof data !== "undefined" && data != null && data.success === true) {
                     //Success
+                    self.totalResults(data.data.totalCount);
                     self.load(data.data);
                 } else {
                     //Error
@@ -95,6 +130,7 @@ contactList.contactsViewModel = function(config) {
             self.getContacts();
         }
         quickSettingsDispatcher.addSubcriber(moduleId, quickSettingsDispatcher.eventTypes.SAVE, updateView);
+        pager.init(self, 5, self.refresh, resx);
     };
 
     self.load = function(data) {
@@ -120,25 +156,28 @@ contactList.contactViewModel = function(parentViewModel, config) {
 
     self.parentViewModel = parentViewModel;
     self.contactId = ko.observable(-1);
-    self.firstName = ko.observable('');
-    self.lastName = ko.observable('');
-    self.email = ko.observable('');
-    self.phone = ko.observable('');
+    self.firstName = ko.observable('').extend({ required: { overrideMessage: "Please enter a first name" } });
+    self.lastName = ko.observable('').extend({ required: { overrideMessage: "Please enter a last name" } });
+    self.email = ko.observable('').extend({ required: { overrideMessage: "Please enter a valid email address", regEx: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ } });
+    self.phone = ko.observable('').extend({ required: { overrideMessage: "Please enter a valid phone number in the format: 123-456-7890", regEx: /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/ } });
     self.twitter = ko.observable('');
 
-    self.cancel = function(){
+    self.cancel = function () {
+        clearErrors([self.firstName, self.lastName, self.email, self.phone]);
         parentViewModel.closeEdit();
     };
 
     self.deleteContact = function (data, e) {
-        var params = {
-            contactId: data.contactId(),
-            firstName: data.firstName(),
-            lastName: data.lastName(),
-            email: data.email(),
-            phone: data.phone(),
-            twitter: data.twitter()
-        };
+        var opts = {
+            callbackTrue: function () {
+                var params = {
+                    contactId: data.contactId(),
+                    firstName: data.firstName(),
+                    lastName: data.lastName(),
+                    email: data.email(),
+                    phone: data.phone(),
+                    twitter: data.twitter()
+                };
 
         util.contactService().post("DeleteContact", params,
             function(data){
@@ -146,10 +185,20 @@ contactList.contactViewModel = function(parentViewModel, config) {
                 parentViewModel.refresh();
             },
 
-            function(data){
-                //Failure
-            }
-        );
+                    function (data) {
+                        //Failure
+                    }
+                );
+            },
+            text: resx.DeleteConfirm,
+            yesText: resx.Delete,
+            noText: resx.Cancel,
+            title: resx.ConfirmDeleteTitle.replace("{0}", data.firstName() + " " + data.lastName())
+        };
+
+        $.dnnConfirm(opts);
+
+       
     };
 
     self.init = function(){
@@ -170,7 +219,14 @@ contactList.contactViewModel = function(parentViewModel, config) {
         self.twitter(data.twitter);
     };
 
-    self.saveContact = function(data, e) {
+    self.saveContact = function (data, e) {
+        self.firstName.valueHasMutated();
+        self.lastName.valueHasMutated();
+        self.phone.valueHasMutated();
+        self.email.valueHasMutated();
+        if ((self.firstName.hasError() || self.lastName.hasError() || self.email.hasError() || self.phone.hasError())) {
+            return;
+        }
         var params = {
             contactId: data.contactId(),
             firstName: data.firstName(),

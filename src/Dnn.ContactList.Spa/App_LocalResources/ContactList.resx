@@ -123,6 +123,15 @@
   <data name="Cancel.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="ConfirmDeleteTitle.Text" xml:space="preserve">
+    <value>Delete {0}</value>
+  </data>
+  <data name="Delete.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteConfirm.Text" xml:space="preserve">
+    <value>Are you sure you want to delete this contact?</value>
+  </data>
   <data name="Edit.Text" xml:space="preserve">
     <value>Edit Contact</value>
   </data>

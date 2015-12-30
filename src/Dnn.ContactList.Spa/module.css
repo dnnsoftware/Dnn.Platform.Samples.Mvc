@@ -1,11 +1,17 @@
 ﻿@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
 
+.editContact {
+    border: solid 1px #aaa;
+    border-radius: 10px;
+    padding: 30px;
+}
+
 .contactCard {
     padding: 20px;
     border: solid 1px #aaa;
     border-radius: 10px;
-    width: 200px;
-    margin: 10px;
+    width: 100%;
+    margin-bottom: 30px;
 }
 
 .contactCard .fa {
@@ -15,20 +21,17 @@
 .contactCard a .fa {
     cursor: pointer;
 }
-.editContact div label {
-  width: 200px;
-  display: inline-block;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  text-align: right;
-  margin-right: 20px;
-  font-weight: bold;
+
+input.has-error {
+    border-color: #a94442;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 }
 
-.editContact div input {
-    width: 200px;
-    margin-top: 20px;
+span.form-error {
+    color: #a94442;
 }
+
 
 .buttons {
   margin-top: 10px;
@@ -36,3 +39,28 @@
   padding-top: 20px;
 }
 
+#ControlBar, #ControlBar *, .actionMenu * { -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; }
+
+
+div.right, div.left {
+    line-height: 30px;
+}
+
+ul.pager {
+    margin: 0 0 0 25px;
+}
+
+ul.pager li>a {
+    border-radius: 3px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+ul.pager li>a.disabled {
+    background: #dbdbdb;
+}
+
+ul.pager li>a:hover {
+    background: #f6f6f6;
+}

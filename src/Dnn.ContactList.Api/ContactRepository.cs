@@ -103,9 +103,14 @@ namespace Dnn.ContactList.Api
         {
             Requires.NotNegative("portalId", portalId);
 
-            var contacts = GetContacts(portalId).Where(c => c.FirstName.Contains(searchTerm) 
-                                                || c.LastName.Contains(searchTerm) || c.Email.Contains(searchTerm));
-            
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                searchTerm = "";
+            }
+            var contacts = GetContacts(portalId).Where(c => c.FirstName.Contains(searchTerm)
+                                                                || c.LastName.Contains(searchTerm) ||
+                                                                c.Email.Contains(searchTerm));
+
 
             return new PagedList<Contact>(contacts, pageIndex, pageSize);
         }

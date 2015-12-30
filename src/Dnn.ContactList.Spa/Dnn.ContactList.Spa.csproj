@@ -106,6 +106,7 @@
     <Content Include="ShowInfo.css" />
     <Content Include="Settings.html" />
     <Content Include="ShowInfo.html" />
+    <Content Include="Stylesheets\bootstrap.min.css" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\BusinessController.cs" />

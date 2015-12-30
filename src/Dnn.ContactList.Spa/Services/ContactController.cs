@@ -86,9 +86,9 @@ namespace Dnn.ContactList.Spa.Services
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public HttpResponseMessage GetContacts()
-        {
-            var contactList = _contactService.GetContacts(PortalSettings.PortalId);
+        public HttpResponseMessage GetContacts(string searchTerm, int pageSize, int pageIndex)
+        {            
+            var contactList = _contactService.GetContacts(searchTerm, PortalSettings.PortalId, pageIndex, pageSize);
             var contacts = contactList
                                  .Select(contact => new ContactViewModel(contact))
                                  .ToList();
@@ -98,7 +98,8 @@ namespace Dnn.ContactList.Spa.Services
                                 success = true,
                                 data = new
                                         {
-                                            results = contacts
+                                            results = contacts,
+                                            totalCount = contactList.TotalCount
                                         }
                             };
 

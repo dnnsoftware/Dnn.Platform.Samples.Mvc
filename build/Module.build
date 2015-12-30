@@ -17,12 +17,13 @@
       <Images Include="Images/*.*" />
       <Keys Include="keys/*.*" />
       <ClientScripts Include="ClientScripts/*.*" />
+	  <Stylesheets Include="Stylesheets/*.*" />
       <JsFiles Include="js/*.*" />
       <Scripts Include="Scripts/*.*" />
       <SharedScripts Include="Scripts/Shared/*.*" />
       <Templates Include="Templates/*.htm" />
       <DataFiles Include="Resources/*.xml" />
-      <Resources Include="@(ResourceFiles);@(Scripts);@(RootViews);@(Images);@(TextFiles);@(SourceFiles);@(ClientScripts);@(JsFiles);
+      <Resources Include="@(ResourceFiles);@(Scripts);@(RootViews);@(Images);@(TextFiles);@(SourceFiles);@(ClientScripts);@(Stylesheets);@(JsFiles);
                  @(Keys);@(Services);@(RootConfig);@(ConfigFiles);@(Templates);@(DataFiles);@(SharedScripts);@(Controls);@(Views);@(MVCViews); @(MVCConfig)" />
     </ItemGroup>
   </Target>
@@ -33,6 +34,7 @@
     <Copy SourceFiles="@(RootConfig)" DestinationFolder="$(ModuleFolderName)" />
     <Copy SourceFiles="@(ResourceFiles)" DestinationFolder="$(ModuleFolderName)\App_LocalResources" />
     <Copy SourceFiles="@(ClientScripts)" DestinationFolder="$(ModuleFolderName)\ClientScripts" />
+	<Copy SourceFiles="@(Stylesheets)" DestinationFolder="$(ModuleFolderName)\Stylesheets" />
     <Copy SourceFiles="@(ConfigFiles)" DestinationFolder="$(ModuleFolderName)\Config" />
     <Copy SourceFiles="@(Controls)" DestinationFolder="$(ModuleFolderName)\Controls" />
     <Copy SourceFiles="@(Images)" DestinationFolder="$(ModuleFolderName)\Images" />
