@@ -1,0 +1,429 @@
+[JavaScript:{ jsname: "JQuery" }]
+[JavaScript:{ jsname: "Knockout" }]
+[JavaScript:{ path: "~/Resources/Shared/scripts/dnn.jquery.js"}]
+[JavaScript:{ path: "~/DesktopModules/SPA_Module_React/Scripts/react.js"}]
+[JavaScript:{ path: "~/DesktopModules/SPA_Module_React/Scripts/react-dom.js"}]
+[JavaScript:{ path: "https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"}]
+
+[ModuleAction:{ controlKey : "Edit", 
+                securityAccessLevel : "Edit",  
+                titleKey: "EditModule", 
+                localResourceFile: "~/DesktopModules/SPA_Module_React/App_LocalResources/View.resx"
+}]
+
+
+<div id="spa-container">
+
+</div>
+
+<script type="text/babel">
+    var sf = $.ServicesFramework("[ModuleContext:ModuleId]");
+    var ContactList_isMounted = true;
+    var formValid = false;
+    var ContactList = React.createClass({
+        getInitialState: function(){
+            return {
+                contactList: this.props.initialList,
+                totalResults: 0
+            };
+        },
+        editContact: function(contact){
+            this.props.editContact(contact);
+        },
+        render: function() {
+            var self = this;
+            return (
+                <div className="row"> 
+                {
+                this.props.initialList.map(function(contact, i){
+                    return <div className="col-md-4" key={contact.contactId}>
+                            <div className="contactCard">
+                                <div className="right">
+                                    <a title="Edit Contact" onClick={self.editContact.bind(null, contact)}>
+                                        <i className="fa fa-pencil"></i>
+                                    </a>
+                                    <a title="Delete" onClick={self.props.deleteContact.bind(null, contact)}>
+                                        <i className="fa fa-trash"></i>
+                                    </a>
+                                </div>
+                                <div>
+                                    <span>{contact.firstName} </span>
+                                    <span>{contact.lastName}</span>
+                                </div>
+                                <div>
+                                    <span>Email Address: </span>
+                                    <span>{contact.email}</span>
+                                </div>
+                                <div>
+                                    <span>Phone: </span>
+                                    <span>{contact.phone}</span>
+                                </div>
+                                <div>
+                                    <span>Twitter: </span>
+                                    <span>{contact.twitter}</span>
+                                </div>
+                            </div>
+                        </div>;
+                    })
+                } 
+                    <div className="buttons col-md-12">
+                        <a className="dnnPrimaryAction" onClick={this.props.addContact}>Add Contact</a>
+                    </div>
+                </div>
+            );
+        }
+    });
+    var EditContact = React.createClass({
+        mixins: [React.addons.LinkedStateMixin],
+        getInitialState: function(){
+            var self = this;
+            return {
+                firstName: self.props.firstName,
+                lastName: self.props.lastName,
+                email: self.props.email,
+                phone: self.props.phone,
+                twitter: self.props.twitter,
+                contactId: self.props.contactId,
+                contactValid: false,
+                firstNameError: false,
+                lastNameError: false,
+                emailError: false,
+                phoneError: false,
+                twitterError: false
+            }
+        },
+        saveContact: function(){
+            var self = this;
+            this.validate("firstName", "firstNameError", "", this.state.firstName);
+            this.validate("lastName", "lastNameError", "", this.state.lastName);
+            this.validate("email", "emailError", /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, this.state.email);
+            this.validate("phone", "phoneError", /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/, this.state.phone);
+            this.validate("twitter", "twitterError", "", this.state.twitter);
+            if(formValid == false){
+                $.dnnAlert({
+                    title: "Form Invalid",
+                    text: "Please fill in the proper fields."
+                });
+                return;
+            }
+            $.ajax({
+                type: 'POST',
+                url: "http://www.platform766.com/DesktopModules/Dnn/ContactList/API/Contact/SaveContact",
+                data: {
+                    firstName: this.state.firstName,
+                    lastName: this.state.lastName,
+                    email: this.state.email,
+                    phone: this.state.phone,
+                    twitter: this.state.twitter,
+                    contactId: this.state.contactId
+                },
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("ModuleId", sf.getModuleId());
+                    xhr.setRequestHeader("TabId", sf.getTabId());
+                },
+                success: function (data) {
+                    self.props.saveContact();
+                },
+                error: function () {
+                 alert("Error getting data.");
+                }
+            });
+        },
+        validate: function(key, errorKey, regex, value){
+            var reg = new RegExp(regex);
+            var keyToChange = {};
+            var invalid = true;
+            if(!reg.test(value) || value == ""){
+                invalid = true;
+                formValid = false;
+            } else {
+                invalid = false;
+                formValid = true;
+            }
+            keyToChange[key] = value;
+            keyToChange[errorKey] = invalid;
+            this.setState(keyToChange);
+        },
+        render: function(){
+            var firstNameLink = {
+                value: this.state.firstName,
+                requestChange: this.validate.bind(this, "firstName", "firstNameError", "")
+            };
+            var lastNameLink = {
+                value: this.state.lastName,
+                requestChange: this.validate.bind(this, "lastName", "lastNameError", "")
+            }
+            var emailLink = {
+                value: this.state.email,
+                requestChange: this.validate.bind(this, "email", "emailError", /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+            }
+            var phoneLink = {
+                value: this.state.phone,
+                requestChange: this.validate.bind(this, "phone", "phoneError", /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/)
+            }
+            var twitterLink = {
+                value: this.state.twitter,
+                requestChange: this.validate.bind(this, "twitter", "twitterError", "")
+            }
+            return <div className="editContact col-md-6 col-md-offset-3">
+                        <div className="form-group">
+                            <label className="form-label">First Name</label>
+                            <input className="form-control" valueLink={firstNameLink} id="firstName"/>
+                            {
+                                this.state.firstNameError ?
+                                <span className="form-error">Please enter a first name.</span> : null
+                            }
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label">Last Name</label>
+                            <input className="form-control" valueLink={lastNameLink}/>
+                            {
+                                this.state.lastNameError ?
+                                <span className="form-error">Please enter a last name.</span> : null
+                            }
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label">Email</label>
+                            <input className="form-control" valueLink={emailLink}/>
+                            {
+                                this.state.emailError ?
+                                <span className="form-error">Please enter a valid email.</span> : null
+                            }
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label">Phone</label>
+                            <input className="form-control" valueLink={phoneLink}/>
+                            {
+                                this.state.phoneError ?
+                                <span className="form-error">Please enter a valid phone number.</span> : null
+                            }
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label">Twitter</label>
+                            <input className="form-control" valueLink={twitterLink}/>
+                            {
+                                this.state.twitterError ?
+                                <span className="form-error">Please enter a twitter handle.</span> : null
+                            }
+                        </div>
+                        <input type="hidden" valueLink={this.linkState('contactId')} id="contactId" />
+                        <div className="buttons">
+                            <a className="dnnSecondaryAction" onClick={this.props.cancel}>Cancel</a>
+                            <a className="dnnPrimaryAction" onClick={this.saveContact}>Save</a>
+                        </div>
+                    </div>;
+        }
+    });
+    var Pager = React.createClass({
+        getInitialState: function(){
+            return null;
+        },
+        render: function(){
+            return (
+                <div className="col-md-12">
+                    <div className="left">{this.props.pagerItemsDescription}</div>
+                    {
+                        this.props.pagerVisible ?
+                    <ul className="right pager">
+                        <li><a className={this.props.prevClass} onClick={this.props.prevAction}><i className="fa fa-angle-left"></i></a></li>
+                        <li><a className={this.props.nextClass} onClick={this.props.nextAction}><i className="fa fa-angle-right"></i></a></li>
+                    </ul> : null
+                    }
+                    <div className="right">{this.props.pagerDescription}</div>
+                </div>
+            );
+        }
+    });
+    var MainContainer = React.createClass({
+        getInitialState: function(){
+            return {
+                editVisible: false,
+                contactList: [],
+                pagerVisible: false,
+                pageSize: 5,
+                pageIndex: 0,
+                nextClass: 'next',
+                prevClass: 'prev',
+                pagerItemsDescription: '',
+                pgrDescription: '',
+                startIndex: 0,
+                endIndex: 0,
+                firstName: "",
+                lastName: "",
+                email: "",
+                phone: "",
+                twitter: "",
+                contactId: -1
+            };
+        },
+        componentDidMount: function(){
+            ContactList_isMounted = true;
+            this.getContacts();
+        },
+        componentWillUnmount: function(){
+            ContactList_isMounted = false;
+        },
+        editContact: function(contact){
+            this.setState({
+                editVisible: true,
+                firstName: contact.firstName,
+                lastName: contact.lastName,
+                email: contact.email,
+                phone: contact.phone,
+                twitter: contact.twitter,
+                contactId: contact.contactId
+            })
+        },
+        addContact: function(){
+            this.setState({
+                editVisible: true,
+                contactId: -1
+            });
+        },
+        cancel: function(){
+            this.setState({
+                editVisible: false,
+                firstName: "",
+                lastName: "",
+                email: "",
+                phone: "",
+                twitter: "",
+                contactId: -1
+            });
+            this.getContacts();
+        },
+        next: function(){
+            this.setState(function(previousState, currentProps) {
+                return {
+                    pageIndex: previousState.pageIndex + 1
+                };
+            }, function(){
+                this.getContacts();
+            });
+        },
+        prev: function(){
+            this.setState(function(previousState, currentProps) {
+                return {
+                    pageIndex: previousState.pageIndex - 1
+                };
+            }, function(){
+                this.getContacts();
+            });  
+        },
+        getContacts: function(){
+            var self = this;
+            $.ajax({
+                type: 'GET',
+                url: "http://www.platform766.com/DesktopModules/Dnn/ContactList/API/Contact/GetContacts",
+                data: {
+                    pageSize: this.state.pageSize,
+                    pageIndex: this.state.pageIndex,
+                    searchTerm: ""
+                },
+                dataType: 'json',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("ModuleId", sf.getModuleId());
+                    xhr.setRequestHeader("TabId", sf.getTabId());
+                },
+                success: function (data) {
+                    var contacts = [];
+                    for (var i = 0; i < data.data.results.length; i++) {
+                        var result = data.data.results[i];
+                        var contact = {
+                            firstName: result.firstName,
+                            lastName: result.lastName,
+                            email: result.email,
+                            phone: result.phone,
+                            twitter: result.twitter,
+                            contactId: result.contactId,
+                        }
+                        contacts.push(contact);
+                    }    
+                    var totalPages = Math.ceil(data.data.totalCount / self.state.pageSize);
+                    var totalRes = data.data.totalCount;
+                    var pgrVisible = (totalPages > 1 ? true : false);
+                    var nxtClass = 'next' + (self.state.pageIndex >= totalPages - 1 ? ' disabled' : '');
+                    var prvClass = 'prev' + (self.state.pageIndex < 1 ? ' disabled' : '');
+                    var startIdx = self.state.pageIndex * self.state.pageSize + 1;
+                    var endIdx = Math.min((self.state.pageIndex + 1) * self.state.pageSize, totalRes);
+                    var currPage = self.state.pageIndex + 1;
+                    var pgrItemsDescription = "Showing " + startIdx + " - " + endIdx + " of " + totalRes + " contacts";
+                    var pgrDescription = "Page: " + currPage + " of " + totalPages;
+                    if(ContactList_isMounted){
+                        self.setState({
+                            contactList: contacts,
+                            totalResults: totalRes,
+                            pagerVisible: pgrVisible,
+                            nextClass: nxtClass,
+                            prevClass: prvClass,
+                            pagerItemsDescription: pgrItemsDescription,
+                            pagerDescription: pgrDescription
+                        });
+                    }
+                },
+                error: function () {
+                 alert("Error getting data.");
+                }
+            });
+        },
+        deleteContact: function(contact){
+            var self = this;
+            var opts = {
+                callbackTrue: function () {
+                    $.ajax({
+                        type: 'POST',
+                        url: "http://www.platform766.com/DesktopModules/Dnn/ContactList/API/Contact/DeleteContact",
+                        data: {
+                            contactId: contact.contactId
+                        },
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader("ModuleId", sf.getModuleId());
+                            xhr.setRequestHeader("TabId", sf.getTabId());
+                        },
+                        success: function (data) {
+                            self.getContacts();
+                        },
+                        error: function () {
+                         alert("Error getting data.");
+                        }
+                    });
+                },
+                text: "Are you sure you want to delete this item?",
+                yesText: "Delete",
+                noText: "Cancel",
+                title: "Delete " +  contact.firstName + " " + contact.lastName
+            };
+
+            $.dnnConfirm(opts);
+        },
+        render: function(){
+            return <div>
+                       {
+                            !this.state.editVisible ? 
+                            <ContactList initialList={this.state.contactList} editContact={this.editContact} deleteContact={this.deleteContact} addContact={this.addContact}/> : null
+                       }
+                       {
+                        !this.state.editVisible ? <Pager nextAction={this.next} prevAction={this.prev} pagerVisible={this.state.pagerVisible} nextClass={this.state.nextClass} prevClass={this.state.prevClass} pagerItemsDescription={this.state.pagerItemsDescription} pagerDescription={this.state.pagerDescription}/> : null
+                       }
+                       {
+                           this.state.editVisible ? 
+                           <EditContact 
+                               firstName={this.state.firstName}
+                               lastName={this.state.lastName}
+                               email={this.state.email}
+                               phone={this.state.phone}
+                               twitter={this.state.twitter}
+                               contactId={this.state.contactId}
+                               cancel={this.cancel}
+                               saveContact={this.cancel}
+                           /> : null
+                       }
+                   </div>
+        }
+    })
+    ReactDOM.render(
+            <MainContainer/>,
+            document.getElementById('spa-container')
+    );
+
+</script>
