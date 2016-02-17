@@ -107,5 +107,29 @@ namespace Dnn.ContactList.Mvc.Controllers
 
             return View(contacts);
         }
+
+        public JsonResult GetJsonResult()
+        {
+            return new JsonResult()
+            {
+                Data = new
+                {
+                    User.UserID,
+                    PortalSettings.PortalId,
+                    Alias = PortalSettings.PortalAlias.HTTPAlias,
+                    Time = DateTime.Now.ToString("HH:mm:ss ttt")
+                },
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public ActionResult GetDemoPartial()
+        {
+            TempData["UserID"] = User.UserID;
+            ViewData["PortalId"] = PortalSettings.PortalId;
+            ViewBag.Alias = PortalSettings.PortalAlias.HTTPAlias;
+
+            return PartialView("_DemoPartial", DateTime.Now);
+        }
     }
 }
