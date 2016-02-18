@@ -71,4 +71,5 @@ SPA Quick Settings
 ![MVC Module Settings](readme_images/MVC-ModuleSettings.PNG)
 MVC Module Settings
 
-
+![PartialView Result and JsonResult Demos](readme_images/Partial-and-Json-Result-Demo.png)
+PartialView Result and JsonResult Demos
