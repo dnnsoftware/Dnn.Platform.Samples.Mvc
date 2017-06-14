@@ -76,6 +76,8 @@ namespace Dnn.ContactList.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
+                contact.PortalId = PortalSettings.PortalId;
+
                 if (contact.ContactId == -1)
                 {
                     _repository.AddContact(contact);
