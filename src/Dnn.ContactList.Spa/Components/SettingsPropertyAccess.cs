@@ -2,6 +2,7 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using System.Globalization;
+using System.Text.RegularExpressions;
 using DotNetNuke.Common;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Services.Tokens;
@@ -65,6 +66,9 @@ namespace Dnn.ContactList.Spa.Components
             {
                 case "IsFormEnabled":
                     propertyValue = _service.IsFormEnabled(_moduleId, _tabId).ToString().ToLower();
+                    break;
+                case "EmailRegex":
+                    propertyValue = Regex.Escape(Globals.glbEmailRegEx);
                     break;
                 default:
                     propertyNotFound = true;
