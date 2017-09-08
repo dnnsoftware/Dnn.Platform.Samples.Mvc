@@ -10,10 +10,12 @@ ko.extenders.required = function (target, options) {
 
     var regEx = new RegExp(options.regEx);
     //define a function to do validation
+    var errorMessage = options.overrideMessage || "This field is required";
     function validate(newValue) {
-        target.hasError(regEx.test(newValue) && newValue !== "" ? false : true);
-        target.validationClass(regEx.test(newValue) && newValue !== "" ? "form-control" : "form-control has-error");
-        target.validationMessage(regEx.test(newValue) && newValue !== "" ? "" : options.overrideMessage || "This field is required");
+        var validated = regEx.test(newValue) && newValue !== "";
+        target.hasError(!validated);
+        target.validationClass(validated ? "form-control" : "form-control has-error");
+        target.validationMessage(validated ? "" : errorMessage);
     }
 
     //validate whenever the value changes
@@ -158,7 +160,7 @@ contactList.contactViewModel = function(parentViewModel, config) {
     self.contactId = ko.observable(-1);
     self.firstName = ko.observable('').extend({ required: { overrideMessage: "Please enter a first name" } });
     self.lastName = ko.observable('').extend({ required: { overrideMessage: "Please enter a last name" } });
-    self.email = ko.observable('').extend({ required: { overrideMessage: "Please enter a valid email address", regEx: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ } });
+    self.email = ko.observable('').extend({ required: { overrideMessage: "Please enter a valid email address", regEx: config.settings.emailRegex } });
     self.phone = ko.observable('').extend({ required: { overrideMessage: "Please enter a valid phone number in the format: 123-456-7890", regEx: /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/ } });
     self.twitter = ko.observable('');
 
