@@ -1,5 +1,6 @@
-Sample projects to create MVC and SPA modules using DNN Platform 8.0
+## Notice: Dnn.Platform.Samples has been relocated!
 
+As of version 10.2.0 of the Dnn Platform, we have moved the code of this repository to [the main Dnn Platform repository](https://github.com/dnnsoftware/Dnn.Platform/tree/develop/DNN%20Platform/Modules/Samples). This repository has been archived and made read-only.
 
 ## Solution Structure
 Dnn.ContactList.Api - The data repository for the Contact object
